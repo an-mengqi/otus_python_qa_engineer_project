@@ -1,1 +1,4 @@
-# otus_python_qa_engineer_project
+## Проектная работа по курсу "Python QA Engineer" на тему "Автоматизация тестирования приложения opencart и REST API сервиса dog.ceo"
+Данный проект содержит в себе UI-автотесты для приложения opencart, а также автотесты для REST API сервиса dog.ceo.
+Применен паттерн PageObject.
+Тесты запускаются с помощью Jenkins, развернутого локально.
