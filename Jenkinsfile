@@ -6,15 +6,10 @@ pipeline {
             steps {
                 sh 'mkdir -p logs'
                 sh 'ls'
-                echo 'CURRENT WORKSPACE: ${env.WORKSPACE}'
                 echo 'Building docker image with tag tests'
                 sh 'docker-compose build'
-                sh 'docker-compose up'
+                sh 'docker-compose up --abort-on-container-exit'
             }
         }
     }
-     post {
-
-        always {sh 'docker-compose down'}
-     }
 }
