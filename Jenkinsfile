@@ -4,6 +4,7 @@ pipeline {
     stages {
         stage('DockerBuild') {
             steps {
+                sh 'ls'
                 echo 'CURRENT WORKSPACE: ${env.WORKSPACE}'
                 echo 'Building docker image with tag tests'
                 sh 'docker-compose build'
@@ -11,4 +12,8 @@ pipeline {
             }
         }
     }
+     post {
+
+        always {sh 'docker-compose down'}
+     }
 }
