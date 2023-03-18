@@ -16,6 +16,8 @@ pipeline {
     }
        post {
 
-        always {sh 'echo SOMETHING'}
+        always {
+        sh 'ls'
+        sh 'echo SOMETHING'}
         }
 }
