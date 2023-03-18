@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('DockerBuild') {
             steps {
-                sh 'mkdir logs'
+                sh 'mkdir -p logs'
                 sh 'ls'
                 echo 'CURRENT WORKSPACE: ${env.WORKSPACE}'
                 echo 'Building docker image with tag tests'
