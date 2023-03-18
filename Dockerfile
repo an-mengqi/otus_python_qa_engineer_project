@@ -19,3 +19,4 @@ COPY . .
 
 # Запуск тестов
 ENTRYPOINT ["pytest"]
+CMD tail -f /dev/null
