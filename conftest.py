@@ -19,6 +19,26 @@ def dog_ceo_url():
     return dog_ceo_url
 
 
+@pytest.hookimpl(tryfirst=True, hookwrapper=True)
+def pytest_runtest_makereport(item, call):
+    outcome = yield
+    rep = outcome.get_result()
+    try:
+        if rep.when == 'call' and rep.failed:
+            if 'browser' in item.fixturenames:
+                web_browser = item.funcargs['browser']
+                allure.attach(
+                    web_browser.get_screenshot_as_png(),
+                    name='screenshot',
+                    attachment_type=allure.attachment_type.PNG
+                )
+            else:
+                logging.info('Failed to get screenshot')
+
+    except Exception as exception:
+        logging.info(f'Failed to take screenshot: {exception}')
+
+
 def pytest_addoption(parser):
     parser.addoption("--browser", default="chrome", help="choose browser: chrome, firefox, yandex")
     parser.addoption("--driver_folder", default=os.path.expanduser("~/otus/drivers"))
